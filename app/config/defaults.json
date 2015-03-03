@@ -23,10 +23,10 @@
     "security.yaml"
   ],
   "autocompleteExtension": {},
-  "useBackendForStorage": false,
-  "backendEndpoint": "/editor/spec",
+  "useBackendForStorage": true,
+  "backendEndpoint": "/backend",
   "backendHealthCheckTimeout": 5000,
-  "useYamlBackend": false,
+  "useYamlBackend": true,
   "disableFileMenu": false,
   "headerBranding": false,
   "enableTryIt": true,

@@ -9,7 +9,43 @@ SwaggerEditor.service('Backend', function Backend($http, $q, defaults,
   function commitNow(data) {
     var result = Builder.buildDocs(data, { resolve: true });
     if (!result.error) {
-      $http.put(defaults.backendEndpoint, data);
+      //$http.put(defaults.backendEndpoint, data);
+      $http(
+        {
+          url: defaults.backendEndpoint,
+          data: data,
+          method: 'PUT',
+          headers: {
+            'Content-type': 'text/plain'
+          }
+        }
+      );
+      var json = jsyaml.load(data);
+
+      // swagger and version should be a string to comfort with the schema
+      if (json.info.version) {
+        json.info.version = String(json.info.version);
+      }
+      if (json.swagger) {
+        if (json.swagger === 2) {
+          json.swagger = '2.0';
+        } else {
+          json.swagger = String(json.swagger);
+        }
+      }
+
+      json = JSON.stringify(json, null, 4);
+
+      $http(
+        {
+          url: '/jsonbackend',
+          data: json,
+          method: 'PUT',
+          headers: {
+            'Content-type': 'text/plain'
+          }
+        }
+      );
     }
   }
 

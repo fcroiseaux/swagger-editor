@@ -1,0 +1,115 @@
+swagger: "2.0"
+info:
+  description: |
+    API dedicated to access PostSafe features
+  version: "0.0.1"
+  title: PostSafe
+  termsOfService: http://www.postsafe.lu/terms/
+  contact:
+    name: philippe.eymann@intech-grp.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: api.post.lu
+basePath: /postsafe/v1
+schemes:
+  - https
+paths:
+  /applications/users/:
+    post:
+      tags:
+        - applications
+      summary: Create PsuToken
+      description: Creates a new empty PSuToken for the user and the application
+      operationId: createPSuToken
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: query
+          name: a
+          description: PSaToken received received during connexion
+          required: true
+          type: string
+      responses:
+        "404":
+          description: Pet not found
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Compartment"
+        "400":
+          description: Invalid ID supplied
+definitions:
+  Compartment:
+    required:
+      - cID
+      - cMeta
+      - cAkX509
+      - cSKName
+    properties:
+      cID:
+        type: string
+        description: compartment identifier. Must be unique
+      cMeta:
+        type: string
+        description: compartment meta data. Json format
+      cAkX509:
+        type: string
+        description: certificate access key for the compartment
+      cSKName:
+        type: string
+        description: SK private key name of the instance that is associated with this compartment
+  Space:
+    required:
+      - sID
+      - sMeta
+      - sMK
+    properties:
+      sID:
+        type: string
+        description: space identifier. Must be unique
+      sMeta:
+        type: string
+        description: space meta data. Json format
+      sMK:
+        type: string
+        description: AES key access. Encrypted with this compartment's PKSK
+  SGrant:
+    required:
+      - gID
+      - gCnSMK
+      - isOwner
+    properties:
+      gID:
+        type: string
+        description: grant identifier. Must be unique
+      gCnSMK:
+        type: string
+        description: This grant's CnSMK
+      isOwner:
+        type: boolean
+        description: Indicate's if this user own's this space.
+  Certificate:
+    required:
+      - xID
+      - X509
+    properties:
+      xID:
+        type: string
+        description: certificate identifier. Must be unique
+      X509:
+        type: string
+        description: The X509 certificate.
+  User:
+    required:
+      - uID
+      - uMeta
+    properties:
+      uID:
+        type: string
+        description: user identifier. Must be unique
+      uMeta:
+        type: string
+        description: user meta data. Json format
+
