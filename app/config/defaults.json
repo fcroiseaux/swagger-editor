@@ -7,7 +7,7 @@
   },
   "analytics": {
     "google": {
-      "id": "UA-51231036-1"
+      "id": "UA-x-1"
     }
   },
   "disableCodeGen": true,
@@ -27,9 +27,9 @@
   "backendEndpoint": "/backend",
   "backendHealthCheckTimeout": 5000,
   "useYamlBackend": true,
-  "disableFileMenu": false,
+  "disableFileMenu": true,
   "headerBranding": false,
-  "enableTryIt": true,
+  "enableTryIt": false,
   "brandingCssClass": "",
   "schemaUrl": "/schema/swagger.json",
   "importProxyUrl": "https://cors-it.herokuapp.com/?url="

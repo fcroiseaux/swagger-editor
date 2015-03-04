@@ -2,11 +2,11 @@
     "swagger": "2.0",
     "info": {
         "description": "API dedicated to access PostSafe features\n",
-        "version": "0.0.1",
+        "version": "1.0.0",
         "title": "PostSafe",
         "termsOfService": "http://www.postsafe.lu/terms/",
         "contact": {
-            "name": "philippe.eymann@intech-grp.com"
+            "name": "info@intech.lu"
         },
         "license": {
             "name": "Apache 2.0",
